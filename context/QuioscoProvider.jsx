@@ -9,10 +9,12 @@ const QuioscoProvider = ({children}) => {
   const [ categoriaActual, setCategoriaActual ] = useState({})
 
   useEffect(() => {
-    
     obtenerCategorias()
-
   }, [])
+
+  useEffect(() => {
+    setCategoriaActual(categorias[0])
+  }, [categorias])
 
   const obtenerCategorias = async () => {
     const { data } = await axios('/api/categorias')
