@@ -7,6 +7,8 @@ const QuioscoProvider = ({children}) => {
 
   const [ categorias, setCategorias ] = useState([])
   const [ categoriaActual, setCategoriaActual ] = useState({})
+  const [ producto, setProducto ] = useState({})
+  const [ modal, setModal ] = useState(false)
 
   useEffect(() => {
     obtenerCategorias()
@@ -27,12 +29,24 @@ const QuioscoProvider = ({children}) => {
     console.info(categoria[0])
   }
 
+  const handleChangeProducto = producto => {
+    setProducto(producto)
+  }
+
+  const handleChangeModal = () => {
+    setModal(!modal)
+  }
+
   return (
     <QuioscoContext.Provider 
       value={{
         categorias,
         categoriaActual,
         handleClickCategoria,
+        producto,
+        handleChangeProducto,
+        modal,
+        handleChangeModal,
       }}
     >
       {children}
