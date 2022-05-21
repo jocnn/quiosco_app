@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Modal from "react-modal/lib/components/Modal";
 import useQuiosco from "../hooks/useQuiosco";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Sidebar from "../components/Sidebar";
 import ModalProducto from "../components/ModalProducto";
@@ -48,11 +50,13 @@ export default function Layout({ children, pagina }) {
             style={customStyles}
           >
             <ModalProducto 
-              
+
             />
           </Modal>
         )
       }
+
+      <ToastContainer />
     </>
   )
 }
