@@ -8,7 +8,7 @@ const ModalProducto = () => {
   
   const [ cantidad, setCantidad ] = useState(1)
 
-  const { producto, handleChangeModal } = useQuiosco()
+  const { producto, handleChangeModal, handleAgregarPedido } = useQuiosco()
   
   return (
     <div className="md:flex gap-10" >
@@ -23,6 +23,7 @@ const ModalProducto = () => {
       <div className="md:w-2/3">
         <div className="flex justify-end">
           <button
+            type="button"
             onClick={handleChangeModal}
           >
             <svg 
@@ -47,6 +48,7 @@ const ModalProducto = () => {
         </p>
         <div className="flex gap-4 mt-5">
           <button
+            type="button"
             onClick={ () => {
               if (cantidad <=1) return
               setCantidad(cantidad - 1)
@@ -67,6 +69,7 @@ const ModalProducto = () => {
           </button>
           <p className="text-3xl">{cantidad}</p>
           <button
+            type="button"
             onClick={ () => {
               if (cantidad >= 5) return
               setCantidad(cantidad + 1)
@@ -86,6 +89,14 @@ const ModalProducto = () => {
             </svg>
           </button>
         </div>
+
+        <button
+          type="button"
+          className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
+          onClick={ () => handleAgregarPedido({...producto, cantidad}) }
+        >
+          Añadir al Pedido
+        </button>
       </div>
     </div>
   )

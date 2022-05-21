@@ -9,6 +9,7 @@ const QuioscoProvider = ({children}) => {
   const [ categoriaActual, setCategoriaActual ] = useState({})
   const [ producto, setProducto ] = useState({})
   const [ modal, setModal ] = useState(false)
+  const [ pedido, setPedido ] = useState([])
 
   useEffect(() => {
     obtenerCategorias()
@@ -26,7 +27,7 @@ const QuioscoProvider = ({children}) => {
   const handleClickCategoria = id => {
     const categoria = categorias.filter( cat => cat.id === id )
     setCategoriaActual(categoria[0])
-    console.info(categoria[0])
+    // console.info(categoria[0])
   }
 
   const handleChangeProducto = producto => {
@@ -35,6 +36,10 @@ const QuioscoProvider = ({children}) => {
 
   const handleChangeModal = () => {
     setModal(!modal)
+  }
+
+  const handleAgregarPedido = ({categoriaId, imagen, ...prod}) => {
+    setPedido([...pedido, prod])
   }
 
   return (
@@ -47,6 +52,8 @@ const QuioscoProvider = ({children}) => {
         handleChangeProducto,
         modal,
         handleChangeModal,
+        pedido,
+        handleAgregarPedido,
       }}
     >
       {children}
