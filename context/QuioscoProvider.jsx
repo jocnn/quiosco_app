@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 const QuioscoContext = createContext()
 
@@ -12,6 +13,8 @@ const QuioscoProvider = ({children}) => {
   const [ modal, setModal ] = useState(false)
   const [ pedido, setPedido ] = useState([])
   const [ paso, setPaso ] = useState(1)
+
+  const router = useRouter()
 
   useEffect(() => {
     obtenerCategorias()
@@ -29,7 +32,7 @@ const QuioscoProvider = ({children}) => {
   const handleClickCategoria = id => {
     const categoria = categorias.filter( cat => cat.id === id )
     setCategoriaActual(categoria[0])
-    // console.info(categoria[0])
+    router.push('/')
   }
 
   const handleChangeProducto = producto => {
@@ -67,6 +70,7 @@ const QuioscoProvider = ({children}) => {
   const handleChangeEliminar = id => {
     const pedidoActualizado = pedido.filter( producto => producto.id !== id)
     setPedido(pedidoActualizado)
+    toast.success('Producto eliminado correctamente')
   }
 
   return (
