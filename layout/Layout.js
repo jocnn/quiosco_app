@@ -51,9 +51,7 @@ export default function Layout({ children, pagina }) {
             isOpen={modal}
             style={customStyles}
           >
-            <ModalProducto 
-
-            />
+            <ModalProducto />
           </Modal>
         )
       }
