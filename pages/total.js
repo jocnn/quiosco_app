@@ -4,11 +4,11 @@ import useQuiosco from "../hooks/useQuiosco"
 
 export default function Total() {
 
-  const { pedido } = useQuiosco()
+  const { pedido, nombre, setNombre } = useQuiosco()
 
   const comprobarPedido = useCallback(() => {
-    return pedido.length === 0
-  }, [pedido])
+    return pedido.length === 0 || nombre === '' || nombre.length < 3
+  }, [pedido, nombre])
 
   useEffect(() => {
     comprobarPedido()
@@ -37,6 +37,8 @@ export default function Total() {
           <input 
             id="nombre"
             type="text" 
+            value={nombre}
+            onChange={ e => setNombre(e.target.value) }
             className="bg-gray-200 w-full lg:w-1/3 mt-3 p-2 rounded-md"
           />
         </div>
